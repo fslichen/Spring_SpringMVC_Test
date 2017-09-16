@@ -15,11 +15,14 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.util.Assert;
 import org.springframework.web.context.WebApplicationContext;
 
+// http://www.baeldung.com/spring-webappconfiguration
+// https://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/testing.html
 @RunWith(SpringJUnit4ClassRunner.class)// entry-point to start using the Spring Test framework. SpringRunner is an alias for the SpringJUnit4ClassRunner.
-@ContextConfiguration(classes = {Application.class})// Load the context configuration and bootstrap the context that the test will use.
-@WebAppConfiguration// Load the web application context.
+@ContextConfiguration(classes = {Application.class})// Load the context configuration and bootstrap the context that the test will use. You can also plug in XML configuration files using locations. 
+@WebAppConfiguration// Load the web application context. @WebAppConfiguration must be used in conjunction with @ContextConfiguration
+// @TestExecutionListeners is used in conjunction with @ContextConfiguration
 public class ApplicationTest {
-	@Autowired
+	@Autowired// Add @WebAppConfiguration when using WebApplicationContext.
 	private WebApplicationContext webApplicationContext;// Loads all the application beans and controllers into the context.
 	
 	private MockMvc mockMvc;
